@@ -1,0 +1,23 @@
+<ion-header #headerwrapper style="background-color:white;">
+  <ion-toolbar>
+    <ion-title>Playlist</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [scrollY]="!search">
+  <ion-header collapse="condense" #condenseheader>
+    <ion-toolbar>
+      <ion-title size="large">Playlist</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="search">
+    <ion-input placeholder="Search..." (ionFocus)="searching()" #input [(ngModel)]="searchFilter" (keyup)="filterSearch($event)"  [class.active-search]="search" [class.inactive-search]="!search">
+      <ion-icon name="search"> </ion-icon>
+      <ion-icon name="close-outline" class="inp" [ngClass]="{'visible-btn':search,'hidden-btn':!search}"></ion-icon>
+    </ion-input>
+    <ion-button fill="clear" color="primary" size="small" (click)="searching()" [ngClass]="{'visible-btn':search,'hidden-btn':!search}">Cancel</ion-button>
+  </div>
+  <div class="search-overlay" #overlay (click)="searching()"></div>
+ <ion-list class="ion-no-padding">
+  <app-item button *ngFor="let item of playlist"  [item]="item" ></app-item>
+ </ion-list>
+</ion-content>
